@@ -1,66 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Landing Page</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      overflow: hidden; /* desktop overflow hidden */
-      font-family: sans-serif;
-    }
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scrollable Landing Page</title>
+    <style>
+        /* Global Reset */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden; /* Prevent body scrollbar */
+        }
 
-    /* Scrollable container for mobile */
-    .slides-container {
-      height: 100%;
-      width: 100%;
-      overflow-y: scroll;
-      scroll-snap-type: y mandatory;
-      -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
-    }
+        /* Container for the full-screen image sections */
+        .image-container {
+            height: 100vh;
+            width: 100vw;
+            overflow-y: scroll; /* Enable vertical scrolling within this container */
+            scroll-snap-type: y mandatory; /* Enforce full-section snapping */
+            -webkit-overflow-scrolling: touch; /* Better mobile scrolling */
+            cursor: pointer; /* Keep the click cursor */
+        }
 
-    .slide {
-      height: 100vh;
-      width: 100vw;
-      background-size: cover;
-      background-position: center;
-      scroll-snap-align: start;
-    }
-  </style>
-  <script>
-    const desktopURL = "https://www.msn.com/it-it"; // Desktop redirect
-    const mobileURL = "https://t.co/lU6lupZ2Qa";    // Mobile redirect on click
+        /* Style for each full-screen image section */
+        .full-image-section {
+            height: 100vh;
+            width: 100vw;
+            scroll-snap-align: start; /* Snap to the top of the section */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            /* Important: Ensures the click handler on the body/container works */
+            position: relative;
+        }
 
-    const isMobile = /iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i
-      .test(navigator.userAgent.toLowerCase());
+        /* Individual Image Backgrounds */
+        #img1 {
+            background-image: url('https://i.imgur.com/KRjnVF4.jpeg'); /* Your original image */
+        }
+        #img2 {
+            background-image: url('https://i.imgur.com/9WjLGKl.jpg'); /* Placeholder for Image 2 */
+        }
+        #img3 {
+            background-image: url('https://i.imgur.com/KRjnVF4.jpeg'); /* Placeholder for Image 3 */
+        }
+        #img4 {
+            background-image: url('https://i.imgur.com/9WjLGKl.jpgg'); /* Placeholder for Image 4 */
+        }
+        
+        /* Note: Replace 'https://i.imgur.com/exampleX.jpeg' with your actual image URLs */
 
-    if (!isMobile) {
-      // Redirect desktop users immediately
-      window.location.replace(desktopURL);
-    }
-  </script>
+    </style>
+    <script>
+        const desktopURL = "https://www.msn.com/it-it";
+        const isMobile = /iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase());
+
+        if (!isMobile) {
+            // Desktop users redirected immediately BEFORE loading the images
+            window.location.replace(desktopURL);
+        }
+    </script>
 </head>
 <body>
+    <div class="image-container" id="imageContainer">
+        <div class="full-image-section" id="img1"></div>
+        <div class="full-image-section" id="img2"></div>
+        <div class="full-image-section" id="img3"></div>
+        <div class="full-image-section" id="img4"></div>
+    </div>
 
-<!-- Mobile slides -->
-<div class="slides-container">
-  <div class="slide" style="background-image: url('https://i.imgur.com/9WjLGKl.jpg');"></div>
-  <div class="slide" style="background-image: url('https://i.ibb.co/YBMg0Cqj/image2.jpg');"></div>
-  <div class="slide" style="background-image: url('https://i.ibb.co/4ZLgbCF1/image3.jpg');"></div>
-  <div class="slide" style="background-image: url('https://i.ibb.co/21Wb9Ntk/image4.jpg');"></div>
-  <div class="slide" style="background-image: url('https://i.ibb.co/9mRpkhCs/image5.jpg');"></div>
-</div>
+    <script>
+        const mobileURL = "https://t.co/hw376Xavsh";
+        const imageContainer = document.getElementById("imageContainer");
 
-<script>
-  // Mobile click redirect
-  document.body.addEventListener("click", () => {
-    window.location.href = mobileURL;
-  });
-</script>
-
+        // Mobile users: redirect when clicking anywhere on the image container
+        imageContainer.addEventListener("click", () => {
+            window.location.href = mobileURL;
+        });
+    </script>
 </body>
 </html>
