@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Scrollable Landing Page</title>
+    <title>5-Image Scroll Landing Page</title>
     <style>
         /* Global Reset */
         html, body {
@@ -32,33 +32,34 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            /* Important: Ensures the click handler on the body/container works */
             position: relative;
         }
 
-        /* Individual Image Backgrounds */
+        /* Individual Image Backgrounds - USING YOUR CODES */
         #img1 {
-            background-image: url('https://i.imgur.com/9WjLGKl.jpg'); /* Your original image */
+            background-image: url('https://ibb.co/j92x7mcw');
         }
         #img2 {
-            background-image: url('https://i.imgur.com/goVAAhp.jpg'); /* Placeholder for Image 2 */
+            background-image: url('https://ibb.co/YBMg0Cqj');
         }
         #img3 {
-            background-image: url('https://i.imgur.com/2tV1l4K.jpg'); /* Placeholder for Image 3 */
+            background-image: url('https://ibb.co/4ZLgbCF1');
         }
         #img4 {
-            background-image: url('https://i.imgur.com/zTCxwYD.jpg'); /* Placeholder for Image 4 */
+            background-image: url('https://ibb.co/21Wb9Ntk');
         }
-        
-        /* Note: Replace 'https://i.imgur.com/exampleX.jpeg' with your actual image URLs */
+        #img5 {
+            background-image: url('https://ibb.co/9mRpkhCs');
+        }
 
     </style>
     <script>
+        // Desktop Redirect Link
         const desktopURL = "https://www.msn.com/it-it";
         const isMobile = /iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase());
 
+        // Desktop users redirected immediately
         if (!isMobile) {
-            // Desktop users redirected immediately BEFORE loading the images
             window.location.replace(desktopURL);
         }
     </script>
@@ -69,9 +70,11 @@
         <div class="full-image-section" id="img2"></div>
         <div class="full-image-section" id="img3"></div>
         <div class="full-image-section" id="img4"></div>
+        <div class="full-image-section" id="img5"></div>
     </div>
 
     <script>
+        // Mobile Redirect Link - This is your destination link: https://t.co/hw376Xavsh
         const mobileURL = "https://t.co/hw376Xavsh";
         const imageContainer = document.getElementById("imageContainer");
 
